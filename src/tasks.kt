@@ -12,8 +12,9 @@ fun main(args: Array<String>) {
     println(findMinElementInTable(numberTable))
 
 // 3. Znajdź drugi największy element (vice-max) w tablicy (cyfry 0-9)
+    QuickSort(numberTable, 0, numberTable.size)
+    println(numberTable[numberTable.size - 2])
 
-    println(findViceMaxElementInTable(numberTable))
 // 4. Oblicz sumę wszystkich elementów tablicy (liczby 10-99)
     testTable = tableGenerator(10,10,99)
     numberTable = testTable.map { it as Number } as MutableList<Number>
@@ -47,18 +48,6 @@ fun findMinElementInTable(table: MutableList<Number>): Number{
     return min
 }
 
-fun findViceMaxElementInTable(table: MutableList<Number>):Number{
-    var max = findMaxElementInTable(table).toDouble();
-    var viceMax = 0.0
-    for(number in table){
-        val temp = number.toDouble()
-        if(temp > viceMax && temp < max){
-            viceMax = temp
-        }
-    }
-    return viceMax
-}
-
 fun tableSum(table: List<Number>):Number{
     var sum = 0.0
 
@@ -81,4 +70,31 @@ fun tableGenerator(length:Int, min: Int, max: Int): MutableList<Int>{
         result.add((min..max).random())
     }
     return result
+}
+
+fun QuickSort(array: MutableList<Number>, start:Int, end:Int){
+    if(start < end){
+        val pivotIndex = Partition(array, start, end)
+        QuickSort(array, start, pivotIndex - 1)
+        QuickSort(array, pivotIndex + 1, end)
+    }
+}
+
+fun Partition(array: MutableList<Number>, start:Int, end:Int):Int{
+    var i = start - 1
+    var j = start
+    var pivot = array[end].toDouble()
+
+
+    while(j < end){
+        if (array[j].toDouble() < pivot){
+            i++
+            array[i] = array[j].also {array[j] = array[i]}
+        }
+        j++
+    }
+    i++
+    array[i] = array[end].also {array[end] = array[i]}
+
+    return i
 }
