@@ -1,7 +1,8 @@
 import kotlin.math.pow
 
 fun main(){
- println(isArmstrongNumber(153))
+    println(isArmstrongNumber(153))
+    println(sumOfProperDivisors(12))
 }
 fun digitsList(number:Int): List<Int>{
     var temp = number
@@ -22,4 +23,11 @@ fun isArmstrongNumber(number: Int): Boolean{
 
     return sum == number
 }
+
+fun sumOfProperDivisors(number:Int):Int{
+    val divisors = divisorsFromGivenRange(number,1 until number)
+    return divisors.sum()
+}
+
+
 
