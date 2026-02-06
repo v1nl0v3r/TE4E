@@ -4,6 +4,7 @@ fun main(){
     println(isArmstrongNumber(153))
     println(sumOfProperDivisors(12))
     println(isTriangularNumber(276))
+    println(maxNumberDigit(29467))
 }
 fun digitsList(number:Int): List<Int>{
     var temp = number
@@ -42,3 +43,4 @@ fun isTriangularNumber(number:Int): Boolean{
     return true
 }
 
+fun maxNumberDigit(number: Int) = digitsList(number).max()
