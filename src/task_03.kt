@@ -3,6 +3,7 @@ import kotlin.math.pow
 fun main(){
     println(isArmstrongNumber(153))
     println(sumOfProperDivisors(12))
+    println(isTriangularNumber(276))
 }
 fun digitsList(number:Int): List<Int>{
     var temp = number
@@ -29,5 +30,15 @@ fun sumOfProperDivisors(number:Int):Int{
     return divisors.sum()
 }
 
+fun isTriangularNumber(number:Int): Boolean{
+    var sum = 0
+    var index = 1
 
+    while (sum != number){
+        sum += index
+        index++
+        if (sum > number) return false
+    }
+    return true
+}
 
